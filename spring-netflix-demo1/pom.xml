@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <groupId>cn.com.github</groupId>
+    <artifactId>spring-netflix-demo1</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <name>spring-netflix-demo1</name>
+    <description>Demo project for Spring Boot</description>
+
+    <modules>
+        <module>spring-common</module>
+        <module>spring-gateway</module>
+        <module>spring-eureka-user</module>
+        <module>spring-eureka-core</module>
+    </modules>
+
+</project>
