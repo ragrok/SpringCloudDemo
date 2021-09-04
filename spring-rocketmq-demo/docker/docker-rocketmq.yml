@@ -66,6 +66,30 @@ services:
       rmq:
         aliases:
           - rmqbroker-a
+  rmqbroker-a-slave:
+    image: rocketmqinc/rocketmq:4.3.0
+    container_name: rmqbroker-a-slave
+    ports:
+      - 11912:11912
+      # - 10911:10911
+    volumes:
+      - /home/windli/rocketmq/logs/broker-a-slave:/opt/logs
+      - /home/windli/rocketmq/store/broker-a-slave:/opt/store
+      - /home/windli/rocketmq/broker-a-slave.conf:/opt/rocketmq-4.3.0/conf/broker.conf
+    environment:
+      TZ: Asia/Shanghai
+      NAMESRV_ADDR: "rmqnamesrv-a:9876"
+      JAVA_OPTS: " -Duser.home=/opt"
+      JAVA_OPT_EXT: "-server -Xms256m -Xmx512m -Xmn256m"
+    command: sh mqbroker -c /opt/rocketmq-4.3.0/conf/broker.conf autoCreateTopicEnable=true &
+    links:
+      - rmqnamesrv-a:rmqnamesrv-a
+      - rmqnamesrv-b:rmqnamesrv-b
+      - rmqnamesrv-c:rmqnamesrv-c
+    networks:
+      rmq:
+        aliases:
+          - rmqbroker-a-slave
 
   rmqbroker-b:
     image: rocketmqinc/rocketmq:4.3.0
@@ -91,7 +115,30 @@ services:
       rmq:
         aliases:
           - rmqbroker-b
-    
+  rmqbroker-b-slave:
+    image: rocketmqinc/rocketmq:4.3.0
+    container_name: rmqbroker-b-slave
+    ports:
+      - 11913:11913
+    #  - 10914:10911
+    volumes:
+      - /home/windli/rocketmq/logs/broker-b-slave:/opt/logs
+      - /home/windli/rocketmq/store/broker-b-slave:/opt/store
+      - /home/windli/rocketmq/broker-b-slave.conf:/opt/rocketmq-4.3.0/conf/broker.conf
+    environment:
+      TZ: Asia/Shanghai
+      NAMESRV_ADDR: "rmqnamesrv-b:9877"
+      JAVA_OPTS: " -Duser.home=/opt"
+      JAVA_OPT_EXT: "-server -Xms256m -Xmx512m -Xmn256m"
+    command: sh mqbroker -c /opt/rocketmq-4.3.0/conf/broker.conf autoCreateTopicEnable=true &
+    links:
+      - rmqnamesrv-a:rmqnamesrv-a
+      - rmqnamesrv-b:rmqnamesrv-b
+      - rmqnamesrv-c:rmqnamesrv-c
+    networks:
+      rmq:
+        aliases:
+          - rmqbroker-b-slave
   rmqbroker-c:
     image: rocketmqinc/rocketmq:4.3.0
     container_name: rmqbroker-c
@@ -106,7 +153,7 @@ services:
         TZ: Asia/Shanghai
         NAMESRV_ADDR: "rmqnamesrv-c:9878"
         JAVA_OPTS: " -Duser.home=/opt"
-        JAVA_OPT_EXT: "-server -Xms256m -Xmx512m -Xmn256m"
+        JAVA_OPT_EXT: "-server -Xms258m -Xmx512m -Xmn256m"
     command: sh mqbroker -c /opt/rocketmq-4.3.0/conf/broker.conf autoCreateTopicEnable=true &
     links:
       - rmqnamesrv-a:rmqnamesrv-a
@@ -116,6 +163,30 @@ services:
       rmq:
         aliases:
           - rmqbroker-c
+  rmqbroker-c-slave:
+    image: rocketmqinc/rocketmq:4.3.0
+    container_name: rmqbroker-c-slave
+    ports:
+      - 11914:11914
+    #  - 10914:10911
+    volumes:
+      - /home/windli/rocketmq/logs/broker-c-slave:/opt/logs
+      - /home/windli/rocketmq/store/broker-c-slave:/opt/store
+      - /home/windli/rocketmq/broker-c-slave.conf:/opt/rocketmq-4.3.0/conf/broker.conf
+    environment:
+      TZ: Asia/Shanghai
+      NAMESRV_ADDR: "rmqnamesrv-c:9878"
+      JAVA_OPTS: " -Duser.home=/opt"
+      JAVA_OPT_EXT: "-server -Xms256m -Xmx512m -Xmn256m"
+    command: sh mqbroker -c /opt/rocketmq-4.3.0/conf/broker.conf autoCreateTopicEnable=true &
+    links:
+      - rmqnamesrv-a:rmqnamesrv-a
+      - rmqnamesrv-b:rmqnamesrv-b
+      - rmqnamesrv-c:rmqnamesrv-c
+    networks:
+      rmq:
+        aliases:
+          - rmqbroker-c-slave
   zookeeper:
     image: wurstmeister/zookeeper
     environment:

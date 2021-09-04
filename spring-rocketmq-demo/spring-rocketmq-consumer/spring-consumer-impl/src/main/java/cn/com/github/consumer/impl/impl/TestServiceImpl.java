@@ -1,6 +1,6 @@
 package cn.com.github.consumer.impl.impl;
 
-import cn.com.github.core.api.service.TestService;
+import cn.com.github.consumer.api.service.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
