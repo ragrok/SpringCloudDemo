@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd        http://dubbo.apache.org/schema/dubbo        http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+<dubbo:application name="${spring.application.name}"  />
+    <!-- 消费方用什么协议获取服务（用dubbo协议在20880端口暴露服务） -->
+    <dubbo:protocol name="dubbo" port="8083"/>
+    <!-- 多注册中心配置 -->
+    <dubbo:registry id="masterRegistry" address="zookeeper://192.168.47.143:2181"/>
+    <!-- 引用中文站服务 -->
+    <dubbo:reference id="dubboInterfaceTest" timeout="6000" interface="cn.com.github.producer.api.service.DubboInterfaceTest" version="1.0.0" registry="dubboRegistry" />
+</beans>

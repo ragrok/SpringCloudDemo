@@ -139,60 +139,93 @@ services:
       rmq:
         aliases:
           - rmqbroker-b-slave
-#  rmqbroker-c:
-#    image: rocketmqinc/rocketmq:4.3.0
-#    container_name: rmqbroker-c
-#    ports:
-#      - 10914:10914
-#    #  - 10914:10911
-#    volumes:
-#      - /home/windli/docker/logs/broker-c:/opt/logs
-#      - /home/windli/docker/store/broker-c:/opt/store
-#      - /home/windli/docker/broker-c.conf:/opt/rocketmq-4.3.0/conf/broker.conf
-#    environment:
-#        TZ: Asia/Shanghai
-#        NAMESRV_ADDR: "rmqnamesrv-c:9878"
-#        JAVA_OPTS: " -Duser.home=/opt"
-#        JAVA_OPT_EXT: "-server -Xms258m -Xmx512m -Xmn256m"
-#    command: sh mqbroker -c /opt/rocketmq-4.3.0/conf/broker.conf autoCreateTopicEnable=true & diskSpaceWarningLevelRatio=0.98
-#    links:
-#      - rmqnamesrv-a:rmqnamesrv-a
-#      - rmqnamesrv-b:rmqnamesrv-b
-#      - rmqnamesrv-c:rmqnamesrv-c
-#    networks:
-#      rmq:
-#        aliases:
-#          - rmqbroker-c
-#  rmqbroker-c-slave:
-#    image: rocketmqinc/rocketmq:4.3.0
-#    container_name: rmqbroker-c-slave
-#    ports:
-#      - 11914:11914
-#    #  - 10914:10911
-#    volumes:
-#      - /home/windli/docker/logs/broker-c-slave:/opt/logs
-#      - /home/windli/docker/store/broker-c-slave:/opt/store
-#      - /home/windli/docker/broker-c-slave.conf:/opt/rocketmq-4.3.0/conf/broker.conf
-#    environment:
-#      TZ: Asia/Shanghai
-#      NAMESRV_ADDR: "rmqnamesrv-c:9878"
-#      JAVA_OPTS: " -Duser.home=/opt"
-#      JAVA_OPT_EXT: "-server -Xms256m -Xmx512m -Xmn256m"
-#    command: sh mqbroker -c /opt/rocketmq-4.3.0/conf/broker.conf autoCreateTopicEnable=true & diskSpaceWarningLevelRatio=0.98
-#    links:
-#      - rmqnamesrv-a:rmqnamesrv-a
-#      - rmqnamesrv-b:rmqnamesrv-b
-#      - rmqnamesrv-c:rmqnamesrv-c
-#    networks:
-#      rmq:
-#        aliases:
-#          - rmqbroker-c-slave
-  zookeeper:
-    image: wurstmeister/zookeeper
+  rmqbroker-c:
+    image: rocketmqinc/rocketmq:4.3.0
+    container_name: rmqbroker-c
+    ports:
+      - 10914:10914
+    #  - 10914:10911
+    volumes:
+      - /home/windli/docker/logs/broker-c:/opt/logs
+      - /home/windli/docker/store/broker-c:/opt/store
+      - /home/windli/docker/broker-c.conf:/opt/rocketmq-4.3.0/conf/broker.conf
     environment:
-      JMX: 9000
+        TZ: Asia/Shanghai
+        NAMESRV_ADDR: "rmqnamesrv-c:9878"
+        JAVA_OPTS: " -Duser.home=/opt"
+        JAVA_OPT_EXT: "-server -Xms258m -Xmx512m -Xmn256m"
+    command: sh mqbroker -c /opt/rocketmq-4.3.0/conf/broker.conf autoCreateTopicEnable=true & diskSpaceWarningLevelRatio=0.98
+    links:
+      - rmqnamesrv-a:rmqnamesrv-a
+      - rmqnamesrv-b:rmqnamesrv-b
+      - rmqnamesrv-c:rmqnamesrv-c
+    networks:
+      rmq:
+        aliases:
+          - rmqbroker-c
+  rmqbroker-c-slave:
+    image: rocketmqinc/rocketmq:4.3.0
+    container_name: rmqbroker-c-slave
+    ports:
+      - 11914:11914
+    #  - 10914:10911
+    volumes:
+      - /home/windli/docker/logs/broker-c-slave:/opt/logs
+      - /home/windli/docker/store/broker-c-slave:/opt/store
+      - /home/windli/docker/broker-c-slave.conf:/opt/rocketmq-4.3.0/conf/broker.conf
+    environment:
+      TZ: Asia/Shanghai
+      NAMESRV_ADDR: "rmqnamesrv-c:9878"
+      JAVA_OPTS: " -Duser.home=/opt"
+      JAVA_OPT_EXT: "-server -Xms256m -Xmx512m -Xmn256m"
+    command: sh mqbroker -c /opt/rocketmq-4.3.0/conf/broker.conf autoCreateTopicEnable=true & diskSpaceWarningLevelRatio=0.98
+    links:
+      - rmqnamesrv-a:rmqnamesrv-a
+      - rmqnamesrv-b:rmqnamesrv-b
+      - rmqnamesrv-c:rmqnamesrv-c
+    networks:
+      rmq:
+        aliases:
+          - rmqbroker-c-slave
+  zk1:
+    image: wurstmeister/zookeeper
+    hostname: zk1
+    container_name: zk1
     ports:
       - "2181:2181"
+    volumes: # 挂载数据
+      - /home/windli/docker/logs/zk-1/data:/data
+      - /home/windli/docker/logs/zk-1/datalog:/datalog
+    networks:
+      - rmq
+#  zk2:
+#    image: wurstmeister/zookeeper
+#    container_name: zk2
+#    hostname: zk2
+#    environment:
+#      - ZOO_MY_ID=2
+#      - ZOO_SERVERS=server.1=zk1:2888:3888;2181 server.2=0.0.0.0:2888:3888;2181 server.3=zk3:2888:3888;2181
+#    ports:
+#      - "2182:2181"
+#    volumes: # 挂载数据
+#      - /home/windli/docker/logs/zk-2/data:/data
+#      - /home/windli/docker/logs/zk-2/datalog:/datalog
+#    networks:
+#      - rmq
+#  zk3:
+#    image: wurstmeister/zookeeper
+#    container_name: zk3
+#    hostname: zk3
+#    environment:
+#      - ZOO_MY_ID=3
+#      - ZOO_SERVERS=server.1=zk1:2888:3888;2181 server.3=0.0.0.0:2888:3888 server.2=zk2:2888:3888;2181
+#    ports:
+#      - "2183:2181"
+#    volumes: # 挂载数据
+#      - /home/windli/docker/logs/zk-3/data:/data
+#      - /home/windli/docker/logs/zk-3/datalog:/datalog
+#    networks:
+#      - rmq
   rmqconsole:
     image: styletang/rocketmq-console-ng
     container_name: rmqconsole
@@ -204,6 +237,19 @@ services:
       rmq:
         aliases:
           - rmqconsole
+  dubbo-admin:
+    image: apache/dubbo-admin
+    container_name: dubbo
+    ports:
+      - 8081:8080
+    networks:
+      - rmq
+    environment:
+      - admin.registry.address=zookeeper://zk1:2181
+      - admin.config-center=zookeeper://zk1:2181
+      - admin.metadata-report.address=zookeeper://zk1:2181
+    depends_on:
+      - zk1
 networks:
   rmq:
     name: rmq
