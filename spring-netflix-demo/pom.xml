@@ -5,10 +5,10 @@
     <packaging>pom</packaging>
 
     <groupId>cn.com.github</groupId>
-    <artifactId>spring-netflix-demo1</artifactId>
+    <artifactId>spring-netflix-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>spring-netflix-demo1</name>
+    <name>spring-netflix-demo</name>
     <description>Demo project for Spring Boot</description>
 
     <modules>
