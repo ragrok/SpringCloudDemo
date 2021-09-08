@@ -21,6 +21,75 @@
         </dependencies>
     </dependencyManagement>
 
+    <properties>
+        <tk-mapper.version>4.1.5</tk-mapper.version>
+        <mybatis.version>2.1.5</mybatis.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+            <!--<exclusions>-->
+                <!--&lt;!&ndash;移除掉该starter中自带的依赖，该依赖版本较低&ndash;&gt;-->
+                <!--<exclusion>-->
+                    <!--<groupId>io.seata</groupId>-->
+                    <!--<artifactId>seata-spring-boot-starter</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>io.seata</groupId>-->
+            <!--<artifactId>seata-spring-boot-starter</artifactId>-->
+            <!--<version>1.3.0</version>-->
+        <!--</dependency>-->
+
+        <!--openfeign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-okhttp</artifactId>
+            <version>10.2.3</version>
+        </dependency>
+
+        <!--Mybatis通用Mapper-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${tk-mapper.version}</version>
+        </dependency>
+
+        <!--mysql-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.com.github</groupId>
+            <artifactId>spring-api-service</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+    </dependencies>
+
     <!--打包插件-->
     <build>
         <plugins>
