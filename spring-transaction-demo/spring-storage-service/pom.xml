@@ -88,6 +88,12 @@
             <version>1.0.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>cn.com.github</groupId>
+            <artifactId>spring-common-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 
 

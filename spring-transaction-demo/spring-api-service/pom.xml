@@ -9,6 +9,29 @@
     <artifactId>spring-api-service</artifactId>
     <version>1.0.0</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.com.github</groupId>
+            <artifactId>spring-common-core</artifactId>
+            <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>tk.mybatis</groupId>
+                    <artifactId>mapper-spring-boot-starter</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>tk.mybatis</groupId>
+                    <artifactId>mapper</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+
     <!--打包插件-->
     <build>
         <plugins>
