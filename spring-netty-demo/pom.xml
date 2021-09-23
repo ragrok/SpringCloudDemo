@@ -17,6 +17,7 @@
         <module>spring-storage-service</module>
         <module>spring-order-service</module>
         <module>spring-pay-service</module>
+        <module>spring-web-service</module>
     </modules>
 
 </project>
