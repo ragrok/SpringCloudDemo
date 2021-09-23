@@ -2,7 +2,7 @@ package cn.com.github.controller;
 
 import cn.com.github.api.HelloService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.DubboReference;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class PayController {
 
-    @DubboReference(check = false, version = "1.0.0",retries = 3, timeout = 3000)
+    @Reference(check = false, version = "1.0.0",retries = 3, timeout = 3000)
     private HelloService helloService;
 
     @PostMapping("getHello")

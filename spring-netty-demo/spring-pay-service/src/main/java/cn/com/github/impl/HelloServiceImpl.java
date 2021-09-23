@@ -1,9 +1,9 @@
 package cn.com.github.impl;
 
 import cn.com.github.api.HelloService;
-import org.apache.dubbo.config.annotation.DubboService;
+import org.apache.dubbo.config.annotation.Service;
 
-@DubboService(version = "1.0.0",retries = 3,timeout = 3000,mock = "return null")
+@Service(version = "1.0.0",retries = 3,timeout = 3000,mock = "return null")
 public class HelloServiceImpl implements HelloService {
 
     @Override
