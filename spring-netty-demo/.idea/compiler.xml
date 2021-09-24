@@ -13,6 +13,7 @@
         <module name="spring-common-core" />
         <module name="spring-order-service" />
         <module name="spring-api-service" />
+        <module name="spring-es-servcie" />
         <module name="spring-pay-service" />
       </profile>
     </annotationProcessing>
