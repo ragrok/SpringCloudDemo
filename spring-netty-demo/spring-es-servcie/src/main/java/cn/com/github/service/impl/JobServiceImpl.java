@@ -30,7 +30,7 @@ public class JobServiceImpl implements JobService {
     public void add(JobDetail detail) throws IOException{
         JobDetail result =  respository.save(detail);
         if (result == null){
-            throw new IOException("zhe li you wen ti");
+            throw new IOException("zhe li y11ou wen ti");
         }
     }
 
