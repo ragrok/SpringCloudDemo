@@ -7,14 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-web-service" />
-        <module name="spring-business-service" />
-        <module name="spring-storage-service" />
-        <module name="spring-common-core" />
-        <module name="spring-order-service" />
         <module name="spring-api-service" />
+        <module name="spring-business-service" />
+        <module name="spring-common-core" />
         <module name="spring-es-servcie" />
+        <module name="spring-order-service" />
         <module name="spring-pay-service" />
+        <module name="spring-storage-service" />
+        <module name="spring-web-service" />
       </profile>
     </annotationProcessing>
   </component>
