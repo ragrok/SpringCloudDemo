@@ -1,6 +1,7 @@
 package cn.com.github.es;
 
 import cn.hutool.core.io.FileUtil;
+import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -9,15 +10,17 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
-public class BuildArticleIndex {
+public class IkBuildArticleIndex {
 
     public static void main(String[] args) throws IOException {
         //构建分词器
-        StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_47);
+        Analyzer analyzer = new IKAnalyzer();
         //构建文档写入器配置
         IndexWriterConfig indexWriterConfig = new IndexWriterConfig(Version.LUCENE_47,analyzer);
         //构建文档写入器

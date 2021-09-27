@@ -7,8 +7,5 @@
         <result column="user_name" property="name" />
         <result column="user_pwd" property="pwd" />
     </resultMap>
-    <!-- 通用查询结果列 -->
-    <sql id="Base_Column_List">
-        ID AS id, user_login AS userLogin, user_pass AS userPass, user_nicename AS userNicename, user_email AS userEmail, user_url AS userUrl, user_registered AS userRegistered, user_activation_key AS userActivationKey, user_status AS userStatus, display_name AS displayName
-    </sql>
+
 </mapper>
