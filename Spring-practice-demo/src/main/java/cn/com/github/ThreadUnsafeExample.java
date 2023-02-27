@@ -3,6 +3,7 @@ package cn.com.github;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @Author hongjian.li
@@ -11,14 +12,14 @@ import java.util.concurrent.Executors;
  **/
 public class ThreadUnsafeExample {
 
-    private int cnt = 0;
+    private AtomicInteger cnt = new AtomicInteger(0);
 
     public void add() {
-        cnt++;
+        cnt.incrementAndGet();
     }
 
     public int get() {
-        return cnt;
+        return cnt.get();
     }
 
     public static void main(String[] args) throws InterruptedException {
